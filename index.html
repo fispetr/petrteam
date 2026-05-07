@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бизнес на премиальных продуктах | Готовая инфраструктура</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: #0C0A0B;
+            color: #F5F5F7;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Основной контейнер с идеальными паддингами Apple */
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Шапка */
+        header {
+            text-align: center;
+            padding: 80px 0 60px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(186, 131, 171, 0.08);
+            color: #C9A0BD;
+            border: 1px solid rgba(201, 160, 189, 0.25);
+            padding: 6px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 28px;
+            backdrop-filter: blur(20px);
+            letter-spacing: -0.01em;
+            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .badge:hover {
+            background: rgba(186, 131, 171, 0.15);
+            border-color: rgba(201, 160, 189, 0.5);
+            transform: translateY(-1px);
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.07143;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #E8D0E0 0%, #FFFFFF 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subhead {
+            font-size: 19px;
+            color: #98989E;
+            max-width: 640px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.4211;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Кнопки в стиле Apple */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #C9A0BD;
+            color: #0C0A0B;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+            letter-spacing: -0.01em;
+            border: none;
+            cursor: pointer;
+            min-width: 180px;
+            box-shadow: 0 4px 15px rgba(201, 160, 189, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background: #D9B8CD;
+            box-shadow: 0 8px 25px rgba(201, 160, 189, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+            transition: all 0.1s ease;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #C9A0BD;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            border: 1.5px solid #C9A0BD;
+            transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+            letter-spacing: -0.01em;
+            cursor: pointer;
+            min-width: 180px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(201, 160, 189, 0.1);
+            border-color: #D9B8CD;
+            color: #D9B8CD;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(201, 160, 189, 0.15);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.97);
+            transition: all 0.1s ease;
+        }
+
+        /* Секции */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: #86868B;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* Сетка карточек */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 28px 24px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            background: rgba(201, 160, 189, 0.06);
+            border-color: rgba(201, 160, 189, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .card:active {
+            transform: scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .card-icon {
+            font-size: 32px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 160, 189, 0.1);
+            border-radius: 14px;
+            margin-bottom: 4px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #FFFFFF;
+            line-height: 1.3;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #86868B;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Кейсы с цифрами */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(201, 160, 189, 0.04);
+            border: 1px solid rgba(201, 160, 189, 0.12);
+            border-radius: 20px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .stat-card:hover {
+            background: rgba(201, 160, 189, 0.08);
+            border-color: rgba(201, 160, 189, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #C9A0BD;
+            letter-spacing: -0.03em;
+            display: block;
+            margin-bottom: 6px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #98989E;
+            font-weight: 500;
+        }
+
+        /* Карточки-ссылки крупные */
+        .link-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .link-card:hover {
+            background: rgba(201, 160, 189, 0.05);
+            border-color: rgba(201, 160, 189, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .link-card .link-title {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .link-card .link-desc {
+            font-size: 14px;
+            color: #86868B;
+            font-weight: 400;
+        }
+
+        .link-card .link-icon {
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+
+        /* CTA блок */
+        .cta-block {
+            background: rgba(201, 160, 189, 0.03);
+            border: 1px solid rgba(201, 160, 189, 0.15);
+            border-radius: 28px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 40px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .cta-block h2 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+
+        .cta-block p {
+            color: #86868B;
+            font-size: 17px;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Разделитель */
+        .divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(201, 160, 189, 0.2), transparent);
+            margin: 40px 0;
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px 0 40px;
+            font-size: 13px;
+            color: #555;
+            letter-spacing: -0.01em;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 14px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .cta-actions {
+                flex-direction: column;
+                gap: 14px;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                padding: 15px 28px;
+                font-size: 15px;
+            }
+            header {
+                padding: 50px 0 40px;
+            }
+            .card {
+                padding: 22px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 32px;
+            }
+            .hero-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .link-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Шапка -->
+    <header>
+        <div class="badge">Производство премиальных продуктов · РФ</div>
+        <h1>Ваш источник дохода<br>на готовой системе</h1>
+        <p class="subhead">Мы производим продукты для красоты и здоровья премиум-класса. Предоставляем сайт, логистику и полное сопровождение — вам остаётся только начать зарабатывать.</p>
+        <div class="hero-actions">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ViJv2z0_YYaoEzfv1NMlbqrAuJjY56_lCXrgavjU1G-HPQ/viewform?usp=header" target="_blank" class="btn-primary">
+                Записаться на разбор
+            </a>
+            <a href="https://youtu.be/vB6A1wReeR4?si=VMgyvVF3bSsrMzuY" target="_blank" class="btn-secondary">
+                Смотреть вебинар
+            </a>
+        </div>
+    </header>
+
+    <!-- Результаты в цифрах -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Результаты наших партнёров</h2>
+            <p class="section-subtitle">Цифры говорят сами за себя</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">4 млн</span>
+                <span class="stat-label">продажи через соцсети</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">30 000 ₽</span>
+                <span class="stat-label">заработок за один день</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">103 000 ₽</span>
+                <span class="stat-label">доход за месяц с нуля</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">22 000 ₽</span>
+                <span class="stat-label">чистая прибыль за 4 дня</span>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Ответы на вопросы -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Сомнения, которые мы развеем</h2>
+            <p class="section-subtitle">Короткие видео-ответы на самые частые вопросы</p>
+        </div>
+        <div class="grid">
+            <a href="https://youtube.com/shorts/OXSDjluWzJ8?si=SjI_UlrSL_UuyXwI" target="_blank" class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Как получить результат</h3>
+                <p>Система для максимальной отдачи</p>
+            </a>
+            <a href="https://youtube.com/shorts/ieKfq7288cg?si=KudbN53cStvO8Pcf" target="_blank" class="card">
+                <div class="card-icon">💎</div>
+                <h3>Почему наши продукты</h3>
+                <p>Преимущество, в которое верят</p>
+            </a>
+            <a href="https://youtube.com/shorts/UBgWa_kGU8Y?si=wEtXcOpBlp2Qyfh_" target="_blank" class="card">
+                <div class="card-icon">😰</div>
+                <h3>Страшно ли начинать</h3>
+                <p>Как мы помогаем сделать шаг</p>
+            </a>
+            <a href="https://youtube.com/shorts/oRpMkFXX1As?si=8t18Z7_kjshrU2RY" target="_blank" class="card">
+                <div class="card-icon">🤝</div>
+                <h3>Есть ли поддержка</h3>
+                <p>Сопровождение 24/7</p>
+            </a>
+            <a href="https://youtube.com/shorts/cr9yy1xokxs?si=4sVhGnOZugAnzc5W" target="_blank" class="card">
+                <div class="card-icon">✅</div>
+                <h3>Работают ли продукты</h3>
+                <p>Честные отзывы и кейсы</p>
+            </a>
+            <a href="https://youtube.com/shorts/TnhIF2CYsqU?si=qzvF1m3djpsheBc_" target="_blank" class="card">
+                <div class="card-icon">👶</div>
+                <h3>А если нет опыта</h3>
+                <p>Старт с абсолютного нуля</p>
+            </a>
+            <a href="https://youtube.com/shorts/wJy_8cRocI8?si=D-YLbAswUB7tUeHM" target="_blank" class="card">
+                <div class="card-icon">🆘</div>
+                <h3>Что если не получается</h3>
+                <p>План действий и разбор ошибок</p>
+            </a>
+            <a href="https://youtube.com/shorts/43-0quPQJTk?si=ZmwTUhSk7MJSecxW" target="_blank" class="card">
+                <div class="card-icon">🔄</div>
+                <h3>Есть ли повторные продажи</h3>
+                <p>Как растёт чек и лояльность</p>
+            </a>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Истории успеха -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Истории, которые вдохновляют</h2>
+            <p class="section-subtitle">Реальные кейсы наших партнёров</p>
+        </div>
+        <div class="link-cards">
+            <a href="https://youtu.be/EqnNkG-_ntk?si=Ic030UdwIdjjL4VA" target="_blank" class="link-card">
+                <div class="link-icon">💰</div>
+                <div class="link-title">Продажи на 4 000 000 ₽</div>
+                <div class="link-desc">Кейс: масштабирование через соцсети</div>
+            </a>
+            <a href="https://youtube.com/shorts/-t2uspUxTH4?si=tgm4ZF-lRY8Iasmu" target="_blank" class="link-card">
+                <div class="link-icon">⚡️</div>
+                <div class="link-title">30 000 ₽ за один день</div>
+                <div class="link-desc">Как заработать быстро и стабильно</div>
+            </a>
+            <a href="https://youtu.be/9eYJCEnu3go?si=OQ3G94nWZG3wtKDl" target="_blank" class="link-card">
+                <div class="link-icon">👩‍💼</div>
+                <div class="link-title">103 000 ₽ за месяц</div>
+                <div class="link-desc">Девушка-предприниматель с нуля</div>
+            </a>
+            <a href="https://youtu.be/mwZP9s5AL0Y?si=H-6jNQnS_Pr8igU1" target="_blank" class="link-card">
+                <div class="link-icon">🚀</div>
+                <div class="link-title">22 000 ₽ за 4 дня</div>
+                <div class="link-desc">Быстрый старт и первые деньги</div>
+            </a>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Дополнительные ссылки -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Узнайте больше</h2>
+        </div>
+        <div class="link-cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <a href="https://youtu.be/vB6A1wReeR4?si=VMgyvVF3bSsrMzuY" target="_blank" class="link-card">
+                <div class="link-icon">🎙️</div>
+                <div class="link-title">Мой путь с нуля</div>
+                <div class="link-desc">Вебинар: почему я в этом бизнесе и как начинал</div>
+            </a>
+            <a href="https://smartproduct.life/?u=PETRFIS" target="_blank" class="link-card">
+                <div class="link-icon">🛒</div>
+                <div class="link-title">Онлайн-магазин</div>
+                <div class="link-desc">Посмотрите ассортимент и качество продукции</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Финальный CTA блок -->
+    <div class="cta-block">
+        <h2>Готовы начать свой путь?</h2>
+        <p>Заполните анкету за 3 минуты и получите персональный разбор вашей ситуации в течение 24 часов. Это бесплатно и ни к чему не обязывает.</p>
+        <div class="cta-actions">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ViJv2z0_YYaoEzfv1NMlbqrAuJjY56_lCXrgavjU1G-HPQ/viewform?usp=header" target="_blank" class="btn-primary">
+                Записаться на индивидуальный разбор
+            </a>
+            <a href="#top" class="btn-secondary">
+                Посмотреть все видео
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Ваш бизнес-проект. Российская компания. Продукты для красоты и здоровья собственного производства. Все права защищены.</p>
+    </footer>
+</div>
+
+</body>
+</html>
