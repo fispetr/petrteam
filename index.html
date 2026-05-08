@@ -8,6 +8,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-deep: #080608;
+            --bg-surface: rgba(255, 255, 255, 0.02);
+            --border-subtle: rgba(255, 255, 255, 0.05);
+            --border-active: rgba(180, 130, 160, 0.35);
+            --accent: #B482A0;
+            --accent-soft: #C9A0BD;
+            --text-primary: #F5F5F7;
+            --text-secondary: #86868B;
+            --text-tertiary: #5C5C62;
+            --shadow-glow: 0 0 0 1px rgba(180, 130, 160, 0.2), 0 20px 50px -15px rgba(0,0,0,0.7);
+            --radius-sm: 14px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+            --radius-xl: 36px;
+            --transition-smooth: all 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+            --transition-bounce: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,222 +34,278 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            background: #0C0A0B;
-            color: #F5F5F7;
-            line-height: 1.47059;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.5;
             font-weight: 400;
-            letter-spacing: -0.022em;
+            letter-spacing: -0.02em;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            background-image:
+                radial-gradient(ellipse at 20% 0%, rgba(180, 130, 160, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(130, 80, 110, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, rgba(60, 30, 40, 0.03) 0%, transparent 70%);
+            background-attachment: fixed;
         }
 
-        /* Основной контейнер с идеальными паддингами Apple */
         .container {
-            max-width: 1024px;
+            max-width: 1060px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 28px;
         }
 
-        /* Шапка */
+        /* ========== ШАПКА ========== */
         header {
             text-align: center;
-            padding: 80px 0 60px;
+            padding: 90px 0 70px;
             position: relative;
         }
-
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            border-radius: 3px;
+        }
         .badge {
             display: inline-flex;
             align-items: center;
-            background: rgba(186, 131, 171, 0.08);
-            color: #C9A0BD;
-            border: 1px solid rgba(201, 160, 189, 0.25);
-            padding: 6px 20px;
+            gap: 8px;
+            background: rgba(180, 130, 160, 0.06);
+            color: var(--accent-soft);
+            border: 1px solid rgba(180, 130, 160, 0.2);
+            padding: 6px 22px;
             border-radius: 100px;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
             backdrop-filter: blur(20px);
             letter-spacing: -0.01em;
-            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: var(--transition-smooth);
         }
-
         .badge:hover {
-            background: rgba(186, 131, 171, 0.15);
-            border-color: rgba(201, 160, 189, 0.5);
+            background: rgba(180, 130, 160, 0.12);
+            border-color: rgba(180, 130, 160, 0.4);
             transform: translateY(-1px);
         }
-
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #7ED957;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #7ED957;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
         h1 {
-            font-size: 56px;
+            font-size: clamp(38px, 6vw, 60px);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.07143;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #E8D0E0 0%, #FFFFFF 80%);
+            letter-spacing: -0.025em;
+            line-height: 1.08;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, #E0C5D5 0%, #FFFFFF 70%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .subhead {
-            font-size: 19px;
-            color: #98989E;
-            max-width: 640px;
-            margin: 0 auto 40px;
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 44px;
             font-weight: 400;
-            line-height: 1.4211;
+            line-height: 1.5;
             letter-spacing: -0.01em;
         }
-
         .hero-actions {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
             flex-wrap: wrap;
         }
 
-        /* Кнопки в стиле Apple */
-        .btn-primary {
+        /* ========== КНОПКИ ========== */
+        .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #C9A0BD;
-            color: #0C0A0B;
-            padding: 16px 36px;
+            gap: 8px;
+            padding: 16px 38px;
             border-radius: 100px;
             font-weight: 600;
             font-size: 16px;
             text-decoration: none;
-            transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
             letter-spacing: -0.01em;
-            border: none;
             cursor: pointer;
-            min-width: 180px;
-            box-shadow: 0 4px 15px rgba(201, 160, 189, 0.2);
+            transition: var(--transition-bounce);
+            border: none;
             position: relative;
-            overflow: hidden;
+            white-space: nowrap;
         }
-
+        .btn-primary {
+            background: linear-gradient(135deg, #B482A0 0%, #9B6B88 100%);
+            color: #FFFFFF;
+            box-shadow: 0 8px 28px rgba(180, 130, 160, 0.25);
+        }
         .btn-primary:hover {
-            background: #D9B8CD;
-            box-shadow: 0 8px 25px rgba(201, 160, 189, 0.4);
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #C89AB5 0%, #B482A0 100%);
+            box-shadow: 0 14px 36px rgba(180, 130, 160, 0.45);
+            transform: translateY(-3px);
         }
-
         .btn-primary:active {
-            transform: scale(0.97);
+            transform: scale(0.95);
             transition: all 0.1s ease;
         }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .btn-outline {
             background: transparent;
-            color: #C9A0BD;
-            padding: 16px 36px;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            border: 1.5px solid #C9A0BD;
-            transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
-            letter-spacing: -0.01em;
-            cursor: pointer;
-            min-width: 180px;
+            color: var(--accent-soft);
+            border: 1.5px solid rgba(180, 130, 160, 0.5);
             backdrop-filter: blur(10px);
         }
-
-        .btn-secondary:hover {
-            background: rgba(201, 160, 189, 0.1);
-            border-color: #D9B8CD;
-            color: #D9B8CD;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(201, 160, 189, 0.15);
+        .btn-outline:hover {
+            background: rgba(180, 130, 160, 0.08);
+            border-color: var(--accent-soft);
+            color: #FFFFFF;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(180, 130, 160, 0.2);
         }
-
-        .btn-secondary:active {
-            transform: scale(0.97);
+        .btn-outline:active {
+            transform: scale(0.95);
             transition: all 0.1s ease;
         }
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+        }
+        .btn-ghost:hover {
+            color: #FFFFFF;
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(255,255,255,0.1);
+        }
 
-        /* Секции */
+        /* ========== СЕКЦИИ ========== */
         .section {
-            padding: 60px 0;
+            padding: 70px 0;
         }
-
         .section-header {
-            text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 50px;
         }
-
+        .section-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
         .section-title {
-            font-size: 36px;
+            font-size: clamp(28px, 4vw, 38px);
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #FFFFFF;
         }
-
         .section-subtitle {
-            font-size: 17px;
-            color: #86868B;
+            font-size: 16px;
+            color: var(--text-secondary);
             font-weight: 400;
             letter-spacing: -0.01em;
+            max-width: 500px;
         }
-
-        /* Сетка карточек */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+        .section-header.center {
+            text-align: center;
+        }
+        .section-header.center .section-subtitle {
             margin: 0 auto;
         }
 
+        /* ========== СЕТКИ ========== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        /* ========== КАРТОЧКИ ========== */
         .card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
             padding: 28px 24px;
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
-            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: var(--transition-smooth);
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
         }
-
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(180,130,160,0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
         .card:hover {
-            background: rgba(201, 160, 189, 0.06);
-            border-color: rgba(201, 160, 189, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+            border-color: var(--border-active);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-glow);
+            background: rgba(255, 255, 255, 0.03);
         }
-
         .card:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
             transition: all 0.1s ease;
         }
-
         .card-icon {
-            font-size: 32px;
-            width: 48px;
-            height: 48px;
+            font-size: 30px;
+            width: 46px;
+            height: 46px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(201, 160, 189, 0.1);
-            border-radius: 14px;
-            margin-bottom: 4px;
+            background: rgba(180, 130, 160, 0.08);
+            border-radius: var(--radius-sm);
+            margin-bottom: 2px;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
         }
-
+        .card:hover .card-icon {
+            background: rgba(180, 130, 160, 0.18);
+            transform: scale(1.05);
+        }
         .card h3 {
             font-size: 16px;
             font-weight: 600;
@@ -238,257 +313,280 @@
             color: #FFFFFF;
             line-height: 1.3;
         }
-
         .card p {
             font-size: 13px;
-            color: #86868B;
+            color: var(--text-secondary);
             font-weight: 400;
             line-height: 1.4;
         }
 
-        /* Кейсы с цифрами */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
+        /* ========== КАРТОЧКИ КЕЙСОВ ========== */
         .stat-card {
-            background: rgba(201, 160, 189, 0.04);
-            border: 1px solid rgba(201, 160, 189, 0.12);
-            border-radius: 20px;
-            padding: 28px 20px;
+            background: rgba(180, 130, 160, 0.03);
+            border: 1px solid rgba(180, 130, 160, 0.1);
+            border-radius: var(--radius-md);
+            padding: 26px 18px;
             text-align: center;
-            transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
-
         .stat-card:hover {
-            background: rgba(201, 160, 189, 0.08);
-            border-color: rgba(201, 160, 189, 0.3);
-            transform: translateY(-2px);
+            background: rgba(180, 130, 160, 0.08);
+            border-color: var(--border-active);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
         }
-
         .stat-number {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 700;
-            color: #C9A0BD;
+            color: var(--accent-soft);
             letter-spacing: -0.03em;
             display: block;
             margin-bottom: 6px;
             line-height: 1;
         }
-
         .stat-label {
             font-size: 13px;
-            color: #98989E;
+            color: var(--text-secondary);
             font-weight: 500;
+            text-align: center;
         }
 
-        /* Карточки-ссылки крупные */
-        .link-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-        }
-
-        .link-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            padding: 32px 24px;
+        /* ========== КАРТОЧКИ-ССЫЛКИ КРУПНЫЕ ========== */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-lg);
+            padding: 34px 28px;
             text-decoration: none;
             color: white;
-            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
             gap: 10px;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-
-        .link-card:hover {
-            background: rgba(201, 160, 189, 0.05);
-            border-color: rgba(201, 160, 189, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180,130,160,0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-
-        .link-card .link-title {
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+        .feature-card:hover {
+            background: rgba(180, 130, 160, 0.04);
+            border-color: rgba(180, 130, 160, 0.3);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-glow);
+        }
+        .feature-card .feature-icon {
+            font-size: 34px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(180, 130, 160, 0.08);
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+        .feature-card .feature-title {
             font-size: 20px;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
-
-        .link-card .link-desc {
+        .feature-card .feature-desc {
             font-size: 14px;
-            color: #86868B;
+            color: var(--text-secondary);
             font-weight: 400;
         }
 
-        .link-card .link-icon {
-            font-size: 28px;
-            margin-bottom: 4px;
-        }
-
-        /* CTA блок */
+        /* ========== CTA БЛОК ========== */
         .cta-block {
-            background: rgba(201, 160, 189, 0.03);
-            border: 1px solid rgba(201, 160, 189, 0.15);
-            border-radius: 28px;
-            padding: 60px 40px;
+            background: rgba(180, 130, 160, 0.025);
+            border: 1px solid rgba(180, 130, 160, 0.12);
+            border-radius: var(--radius-xl);
+            padding: 60px 50px;
             text-align: center;
-            margin-top: 40px;
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            margin-top: 50px;
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            position: relative;
+            overflow: hidden;
         }
-
+        .cta-block::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 0%, rgba(180,130,160,0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
         .cta-block h2 {
             font-size: 32px;
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 14px;
+            position: relative;
         }
-
         .cta-block p {
-            color: #86868B;
+            color: var(--text-secondary);
             font-size: 17px;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
         }
-
         .cta-actions {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            position: relative;
         }
 
-        /* Разделитель */
+        /* ========== РАЗДЕЛИТЕЛЬ ========== */
         .divider {
             border: none;
             height: 1px;
-            background: linear-gradient(to right, transparent, rgba(201, 160, 189, 0.2), transparent);
-            margin: 40px 0;
+            background: linear-gradient(to right, transparent, rgba(180, 130, 160, 0.18), transparent);
+            margin: 20px 0 60px;
         }
 
-        /* Футер */
+        /* ========== ФУТЕР ========== */
         footer {
             text-align: center;
-            padding: 30px 0 40px;
-            font-size: 13px;
-            color: #555;
+            padding: 30px 0 50px;
+            font-size: 12px;
+            color: var(--text-tertiary);
             letter-spacing: -0.01em;
         }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 40px;
-            }
-            .grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 14px;
-            }
-            .section-title {
-                font-size: 28px;
-            }
-            .cta-actions {
-                flex-direction: column;
-                gap: 14px;
-            }
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 300px;
-                padding: 15px 28px;
-                font-size: 15px;
-            }
-            header {
-                padding: 50px 0 40px;
-            }
-            .card {
-                padding: 22px 18px;
-            }
+        footer a {
+            color: var(--accent-soft);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #FFFFFF;
         }
 
+        /* ========== АНИМАЦИЯ ПОЯВЛЕНИЯ ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section {
+            animation: fadeInUp 0.8s ease backwards;
+        }
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+
+        /* ========== АДАПТИВ ========== */
+        @media (max-width: 768px) {
+            header { padding: 60px 0 50px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+            .grid-4 { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+            .cta-block { padding: 44px 24px; border-radius: var(--radius-lg); }
+            .btn { padding: 14px 28px; font-size: 15px; }
+            .section { padding: 50px 0; }
+        }
         @media (max-width: 480px) {
-            h1 {
-                font-size: 32px;
-            }
-            .hero-actions {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .btn-primary, .btn-secondary {
-                width: 100%;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .link-cards {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 0 16px; }
+            .hero-actions { flex-direction: column; gap: 12px; }
+            .btn { width: 100%; max-width: 320px; }
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+            .grid-4 { grid-template-columns: 1fr 1fr; }
+            .cta-actions { flex-direction: column; gap: 14px; }
+            .stat-number { font-size: 26px; }
+            .card { padding: 22px 18px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Шапка -->
+    <!-- ═══════════════ ШАПКА ═══════════════ -->
     <header>
-        <div class="badge">Производство премиальных продуктов · РФ</div>
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Производство премиальных продуктов · РФ
+        </div>
         <h1>Ваш источник дохода<br>на готовой системе</h1>
-        <p class="subhead">Мы производим продукты для красоты и здоровья премиум-класса. Предоставляем сайт, логистику и полное сопровождение — вам остаётся только начать зарабатывать.</p>
+        <p class="subhead">Мы создаём продукты для красоты и здоровья премиум-класса. Вы получаете сайт, логистику и полное сопровождение — просто начните зарабатывать.</p>
         <div class="hero-actions">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ViJv2z0_YYaoEzfv1NMlbqrAuJjY56_lCXrgavjU1G-HPQ/viewform?usp=header" target="_blank" class="btn-primary">
-                Записаться на разбор
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ViJv2z0_YYaoEzfv1NMlbqrAuJjY56_lCXrgavjU1G-HPQ/viewform?usp=header" target="_blank" class="btn btn-primary">
+                <span>📋</span> Записаться на разбор
             </a>
-            <a href="https://youtu.be/vB6A1wReeR4?si=VMgyvVF3bSsrMzuY" target="_blank" class="btn-secondary">
-                Смотреть вебинар
+            <a href="https://youtu.be/vB6A1wReeR4?si=VMgyvVF3bSsrMzuY" target="_blank" class="btn btn-outline">
+                <span>▶️</span> Смотреть вебинар
             </a>
         </div>
     </header>
 
-    <!-- Результаты в цифрах -->
+    <!-- ═══════════════ БЛОК 1: РЕЗУЛЬТАТЫ ═══════════════ -->
     <div class="section">
-        <div class="section-header">
+        <div class="section-header center">
+            <div class="section-label">Цифры</div>
             <h2 class="section-title">Результаты наших партнёров</h2>
-            <p class="section-subtitle">Цифры говорят сами за себя</p>
+            <p class="section-subtitle">Цифры, которые говорят громче обещаний</p>
         </div>
-        <div class="stats-grid">
-            <div class="stat-card">
+        <div class="grid-4">
+            <a href="https://youtu.be/EqnNkG-_ntk?si=Ic030UdwIdjjL4VA" target="_blank" class="stat-card">
                 <span class="stat-number">4 млн</span>
                 <span class="stat-label">продажи через соцсети</span>
-            </div>
-            <div class="stat-card">
+            </a>
+            <a href="https://youtube.com/shorts/-t2uspUxTH4?si=tgm4ZF-lRY8Iasmu" target="_blank" class="stat-card">
                 <span class="stat-number">30 000 ₽</span>
-                <span class="stat-label">заработок за один день</span>
-            </div>
-            <div class="stat-card">
+                <span class="stat-label">за один день</span>
+            </a>
+            <a href="https://youtu.be/1VL9i5DgOg4?si=Q2Q1l7BfuOCESkNc" target="_blank" class="stat-card">
                 <span class="stat-number">103 000 ₽</span>
-                <span class="stat-label">доход за месяц с нуля</span>
-            </div>
-            <div class="stat-card">
+                <span class="stat-label">за месяц с нуля</span>
+            </a>
+            <a href="https://youtu.be/mwZP9s5AL0Y?si=H-6jNQnS_Pr8igU1" target="_blank" class="stat-card">
                 <span class="stat-number">22 000 ₽</span>
-                <span class="stat-label">чистая прибыль за 4 дня</span>
-            </div>
+                <span class="stat-label">за 4 дня</span>
+            </a>
         </div>
     </div>
 
     <hr class="divider">
 
-    <!-- Ответы на вопросы -->
+    <!-- ═══════════════ БЛОК 2: ВОПРОСЫ И СТРАХИ ═══════════════ -->
     <div class="section">
         <div class="section-header">
+            <div class="section-label">Поддержка</div>
             <h2 class="section-title">Сомнения, которые мы развеем</h2>
-            <p class="section-subtitle">Короткие видео-ответы на самые частые вопросы</p>
+            <p class="section-subtitle">Короткие видео-ответы на самые частые вопросы. Выберите то, что волнует именно вас.</p>
         </div>
-        <div class="grid">
-            <a href="https://youtube.com/shorts/OXSDjluWzJ8?si=SjI_UlrSL_UuyXwI" target="_blank" class="card">
+        <div class="grid-3">
+            <a href="#" target="_blank" class="card">
                 <div class="card-icon">🎯</div>
-                <h3>Как получить результат</h3>
+                <h3>Инструменты для клиентов</h3>
                 <p>Система для максимальной отдачи</p>
             </a>
             <a href="https://youtube.com/shorts/ieKfq7288cg?si=KudbN53cStvO8Pcf" target="_blank" class="card">
@@ -509,7 +607,7 @@
             <a href="https://youtube.com/shorts/cr9yy1xokxs?si=4sVhGnOZugAnzc5W" target="_blank" class="card">
                 <div class="card-icon">✅</div>
                 <h3>Работают ли продукты</h3>
-                <p>Честные отзывы и кейсы</p>
+                <p>Честные ответы и кейсы</p>
             </a>
             <a href="https://youtube.com/shorts/TnhIF2CYsqU?si=qzvF1m3djpsheBc_" target="_blank" class="card">
                 <div class="card-icon">👶</div>
@@ -531,75 +629,96 @@
 
     <hr class="divider">
 
-    <!-- Истории успеха -->
+    <!-- ═══════════════ БЛОК 3: ОТЗЫВЫ И ПРОДУКТЫ ═══════════════ -->
     <div class="section">
-        <div class="section-header">
-            <h2 class="section-title">Истории, которые вдохновляют</h2>
-            <p class="section-subtitle">Реальные кейсы наших партнёров</p>
+        <div class="section-header center">
+            <div class="section-label">Доказательства</div>
+            <h2 class="section-title">Отзывы и продукты</h2>
+            <p class="section-subtitle">Посмотрите, что говорят партнёры, и изучите ассортимент</p>
         </div>
-        <div class="link-cards">
-            <a href="https://youtu.be/EqnNkG-_ntk?si=Ic030UdwIdjjL4VA" target="_blank" class="link-card">
-                <div class="link-icon">💰</div>
-                <div class="link-title">Продажи на 4 000 000 ₽</div>
-                <div class="link-desc">Кейс: масштабирование через соцсети</div>
+        <div class="grid-2">
+            <a href="https://t.me/xbiomotzivy" target="_blank" class="feature-card">
+                <div class="feature-icon">💬</div>
+                <div class="feature-title">Telegram-канал с отзывами</div>
+                <div class="feature-desc">Короткие истории партнёров: их путь, первые продажи, впечатления от продуктов. Живые эмоции без постановки.</div>
+                <span style="display: inline-block; margin-top: 6px; font-size: 13px; color: var(--accent); font-weight: 500;">
+                    Смотреть отзывы →
+                </span>
             </a>
-            <a href="https://youtube.com/shorts/-t2uspUxTH4?si=tgm4ZF-lRY8Iasmu" target="_blank" class="link-card">
-                <div class="link-icon">⚡️</div>
-                <div class="link-title">30 000 ₽ за один день</div>
-                <div class="link-desc">Как заработать быстро и стабильно</div>
-            </a>
-            <a href="https://youtu.be/9eYJCEnu3go?si=OQ3G94nWZG3wtKDl" target="_blank" class="link-card">
-                <div class="link-icon">👩‍💼</div>
-                <div class="link-title">103 000 ₽ за месяц</div>
-                <div class="link-desc">Девушка-предприниматель с нуля</div>
-            </a>
-            <a href="https://youtu.be/mwZP9s5AL0Y?si=H-6jNQnS_Pr8igU1" target="_blank" class="link-card">
-                <div class="link-icon">🚀</div>
-                <div class="link-title">22 000 ₽ за 4 дня</div>
-                <div class="link-desc">Быстрый старт и первые деньги</div>
+            <a href="https://smartproduct.life/?u=PETRFIS" target="_blank" class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <div class="feature-title">Онлайн-магазин</div>
+                <div class="feature-desc">Полный каталог премиальной продукции. Убедитесь в качестве сами — всё прозрачно и доступно.</div>
+                <span style="display: inline-block; margin-top: 6px; font-size: 13px; color: var(--accent); font-weight: 500;">
+                    Открыть магазин →
+                </span>
             </a>
         </div>
     </div>
 
     <hr class="divider">
 
-    <!-- Дополнительные ссылки -->
+    <!-- ═══════════════ БЛОК 4: ПОГРУЖЕНИЕ ═══════════════ -->
     <div class="section">
-        <div class="section-header">
+        <div class="section-header center">
+            <div class="section-label">Глубокое погружение</div>
             <h2 class="section-title">Узнайте больше</h2>
+            <p class="section-subtitle">Моя история и возможность задать вопрос лично</p>
         </div>
-        <div class="link-cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-            <a href="https://youtu.be/vB6A1wReeR4?si=VMgyvVF3bSsrMzuY" target="_blank" class="link-card">
-                <div class="link-icon">🎙️</div>
-                <div class="link-title">Мой путь с нуля</div>
-                <div class="link-desc">Вебинар: почему я в этом бизнесе и как начинал</div>
+        <div class="grid-2">
+            <a href="https://youtu.be/vB6A1wReeR4?si=VMgyvVF3bSsrMzuY" target="_blank" class="feature-card">
+                <div class="feature-icon">🎙️</div>
+                <div class="feature-title">Мой путь с нуля</div>
+                <div class="feature-desc">Вебинар: почему я выбрал этот бизнес, как начинал и какие ошибки совершал. Честно, без прикрас.</div>
+                <span style="display: inline-block; margin-top: 6px; font-size: 13px; color: var(--accent); font-weight: 500;">
+                    Смотреть вебинар →
+                </span>
             </a>
-            <a href="https://smartproduct.life/?u=PETRFIS" target="_blank" class="link-card">
-                <div class="link-icon">🛒</div>
-                <div class="link-title">Онлайн-магазин</div>
-                <div class="link-desc">Посмотрите ассортимент и качество продукции</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ViJv2z0_YYaoEzfv1NMlbqrAuJjY56_lCXrgavjU1G-HPQ/viewform?usp=header" target="_blank" class="feature-card">
+                <div class="feature-icon">📝</div>
+                <div class="feature-title">Индивидуальный разбор</div>
+                <div class="feature-desc">Заполните анкету за 3 минуты. Я лично проанализирую вашу ситуацию и скажу, подходит ли вам это направление.</div>
+                <span style="display: inline-block; margin-top: 6px; font-size: 13px; color: var(--accent); font-weight: 500;">
+                    Записаться на разбор →
+                </span>
             </a>
         </div>
     </div>
 
-    <!-- Финальный CTA блок -->
+    <!-- ═══════════════ ФИНАЛЬНЫЙ CTA ═══════════════ -->
     <div class="cta-block">
         <h2>Готовы начать свой путь?</h2>
-        <p>Заполните анкету за 3 минуты и получите персональный разбор вашей ситуации в течение 24 часов. Это бесплатно и ни к чему не обязывает.</p>
+        <p>Заполните анкету за 3 минуты. В течение 24 часов вы получите персональный разбор вашей ситуации. Бесплатно и без обязательств.</p>
         <div class="cta-actions">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ViJv2z0_YYaoEzfv1NMlbqrAuJjY56_lCXrgavjU1G-HPQ/viewform?usp=header" target="_blank" class="btn-primary">
-                Записаться на индивидуальный разбор
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ViJv2z0_YYaoEzfv1NMlbqrAuJjY56_lCXrgavjU1G-HPQ/viewform?usp=header" target="_blank" class="btn btn-primary">
+                <span>📋</span> Записаться на разбор
             </a>
-            <a href="#top" class="btn-secondary">
-                Посмотреть все видео
+            <a href="https://t.me/xbiomotzivy" target="_blank" class="btn btn-outline">
+                <span>💬</span> Telegram с отзывами
+            </a>
+            <a href="#top" class="btn btn-ghost">
+                <span>↑</span> Наверх
             </a>
         </div>
     </div>
 
     <footer>
-        <p>© 2024 Ваш бизнес-проект. Российская компания. Продукты для красоты и здоровья собственного производства. Все права защищены.</p>
+        <p>© Ваш бизнес-проект. Продукты для красоты и здоровья собственного производства. <a href="https://smartproduct.life/?u=PETRFIS" target="_blank">Магазин</a> · <a href="https://t.me/xbiomotzivy" target="_blank">Отзывы</a></p>
     </footer>
 </div>
+
+<!-- Скрипт для эффекта свечения карточек при движении мыши -->
+<script>
+    document.querySelectorAll('.card, .feature-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+</script>
 
 </body>
 </html>
